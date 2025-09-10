@@ -52,6 +52,7 @@ application: explore_assistant {
     core_api_methods: ["lookml_model_explore","run_inline_query","run_query","create_query","update_user_attribute","create_user_attribute","all_user_attributes","me"]
     external_api_urls: ["@{EXPLORE_ASSISTANT_CLOUD_RUN}"]
     global_user_attributes: ["explore_assistant_cloud_run_url"]
+    scoped_user_attributes: ["gcp_id_token"]
     navigation: yes
     use_embeds: yes
     use_iframes: yes
