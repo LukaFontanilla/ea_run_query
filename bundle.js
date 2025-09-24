@@ -180,19 +180,8 @@ const vis = {
         const timeDimField = dimensions[0];
         const firstMeasureField = measures[0];
 
-        // 1. Dynamic Viz Options Update (Measure Select)
-        const availableMeasures = measures.map(m => ({ [m.name]: m.name }));
-        const newMeasureConfig = {
-            selected_measure_field: {
-                values: availableMeasures
-            }
-        };
-
-        console.log(newMeasureConfig)
-        this.trigger('updateConfig', newMeasureConfig);
-
         // Determine the measure for aggregation/chart data
-        const selectedMeasureName = config.selected_measure_field || firstMeasureField.name;
+        const selectedMeasureName = measures[1].name;
         const selectedMeasure = measures.find(m => m.name === selectedMeasureName);
         const selectedAggregation = config.selected_aggregation || 'avg';
         const chartColor = config.chart_color || '#1F77B4';
