@@ -189,7 +189,7 @@ const vis = {
         };
 
         console.log(newMeasureConfig)
-        this.trigger('updateConfig', [newMeasureConfig]);
+        this.trigger('updateConfig', newMeasureConfig);
 
         // Determine the measure for aggregation/chart data
         const selectedMeasureName = config.selected_measure_field || firstMeasureField.name;
