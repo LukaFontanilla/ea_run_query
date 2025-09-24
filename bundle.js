@@ -91,7 +91,6 @@ const vis = {
             default: "auto",
             section: "Aggregation Settings",
             order: 1,
-            // Looker will dynamically populate values via updateAsync's `updateConfig`
             values: []
         },
         selected_aggregation: {
@@ -185,14 +184,15 @@ const vis = {
         const availableMeasures = measures.map(m => ({ [m.label]: m.name }));
         const newMeasureConfig = {
             selected_measure_field: {
-                values: availableMeasures,
-                default: firstMeasureField.name
+                values: availableMeasures
             }
         };
+
+        console.log(newMeasureConfig)
         // This is the core fix: trigger the update and check if the config has changed.
         // If it has, the function will be called again with the updated config.
         if (details.changed.config === false) {
-             this.trigger('updateConfig', newMeasureConfig);
+             this.trigger('updateConfig', [newMeasureConfig]);
         }
 
         // Determine the measure for aggregation/chart data
