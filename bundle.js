@@ -1,3 +1,10 @@
+// Dynamically load Chart.js from CDN
+(function() {
+    const chartJsScript = document.createElement('script');
+    chartJsScript.src = "https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js";
+    document.head.appendChild(chartJsScript);
+})();
+
 const css = `
     .ts-agg-viz-container {
         font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
@@ -129,7 +136,6 @@ const vis = {
 
         // Build the DOM structure for the visualization
         element.innerHTML = `
-            <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
             <div class="ts-agg-viz-container">
                 <div id="ts-agg-value-container" class="ts-agg-value-container">
                     <div id="ts-agg-title" class="ts-agg-title"></div>
@@ -201,16 +207,14 @@ const vis = {
         const aggregateFn = aggregationFunctions[selectedAggregation];
         const aggregatedValue = aggregateFn ? aggregateFn(valuesForAggregation) : 0;
 
-        // Format the aggregated value using Looker's utility
+        // Format the aggregated value using Looker's utility if available
         let formattedAggValue = aggregatedValue.toFixed(2);
-        // if (window.LookerCharts && window.LookerCharts.Utils && window.LookerCharts.Utils.formatValue) {
-        //     const formatString = valueFormat || (selectedMeasure && selectedMeasure.value_format);
-        //     formattedAggValue = window.LookerCharts.Utils.formatValue(aggregatedValue, formatString);
-        // } else {
-        //     formattedAggValue = aggregatedValue.toLocaleString('en-US', { maximumFractionDigits: 2, minimumFractionDigits: 2 });
-        // }
-
-        formattedAggValue = aggregatedValue.toLocaleString('en-US', { maximumFractionDigits: 2, minimumFractionDigits: 2 });
+        if (window.LookerCharts && window.LookerCharts.Utils && window.LookerCharts.Utils.formatValue) {
+            const formatString = valueFormat || (selectedMeasure && selectedMeasure.value_format);
+            formattedAggValue = window.LookerCharts.Utils.formatValue(aggregatedValue, formatString);
+        } else {
+            formattedAggValue = aggregatedValue.toLocaleString('en-US', { maximumFractionDigits: 2, minimumFractionDigits: 2 });
+        }
 
         // --- Update Aggregation Display ---
         document.getElementById('ts-agg-title').textContent = `${selectedAggregation.toUpperCase()} OF ${selectedMeasure ? selectedMeasure.label : 'VALUE'}`;
