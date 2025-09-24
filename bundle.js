@@ -129,6 +129,7 @@ const vis = {
 
         // Build the DOM structure for the visualization
         element.innerHTML = `
+            <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
             <div class="ts-agg-viz-container">
                 <div id="ts-agg-value-container" class="ts-agg-value-container">
                     <div id="ts-agg-title" class="ts-agg-title"></div>
@@ -144,6 +145,10 @@ const vis = {
     // --- Visualization Update (Main Logic) ---
     updateAsync: function(data, element, config, queryResponse, details, done) {
         this.clearErrors();
+
+        // Log the initial data and queryResponse objects
+        console.log("Looker Data:", data);
+        console.log("Query Response:", queryResponse);
 
         // Check for required fields and Chart.js availability
         const { fields } = queryResponse;
