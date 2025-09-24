@@ -13,6 +13,10 @@ explore: explore_assistant_examples {
     field: model_set
     user_attribute: explore_assistant_model_sets
   }
+  # access_filter: {
+  #   field: explore_id
+  #   user_attribute: explore_assistant_model_sets
+  # }
   join: explore_assistant_refinement_examples {
     type: left_outer
     relationship: one_to_one
