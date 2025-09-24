@@ -181,14 +181,16 @@ const vis = {
         const timeDimField = dimensions[0];
         const firstMeasureField = measures[0];
 
+        console.log(measures);
+
         // 1. Dynamic Viz Options Update (Measure Select)
         const availableMeasures = measures.map(m => ({ [m.label]: m.name }));
-        const newMeasureConfig = {
+        const newMeasureConfig = [{
             selected_measure_field: {
                 values: availableMeasures,
                 default: firstMeasureField.name
             }
-        };
+        }];
         this.trigger('updateConfig', newMeasureConfig);
 
         // Determine the measure for aggregation/chart data
