@@ -203,12 +203,12 @@ const vis = {
 
         // Format the aggregated value using Looker's utility
         let formattedAggValue = aggregatedValue.toFixed(2);
-        # if (window.LookerCharts && window.LookerCharts.Utils && window.LookerCharts.Utils.formatValue) {
-        #     const formatString = valueFormat || (selectedMeasure && selectedMeasure.value_format);
-        #     formattedAggValue = window.LookerCharts.Utils.formatValue(aggregatedValue, formatString);
-        # } else {
-        #     formattedAggValue = aggregatedValue.toLocaleString('en-US', { maximumFractionDigits: 2, minimumFractionDigits: 2 });
-        # }
+        // if (window.LookerCharts && window.LookerCharts.Utils && window.LookerCharts.Utils.formatValue) {
+        //     const formatString = valueFormat || (selectedMeasure && selectedMeasure.value_format);
+        //     formattedAggValue = window.LookerCharts.Utils.formatValue(aggregatedValue, formatString);
+        // } else {
+        //     formattedAggValue = aggregatedValue.toLocaleString('en-US', { maximumFractionDigits: 2, minimumFractionDigits: 2 });
+        // }
 
         formattedAggValue = aggregatedValue.toLocaleString('en-US', { maximumFractionDigits: 2, minimumFractionDigits: 2 });
 
