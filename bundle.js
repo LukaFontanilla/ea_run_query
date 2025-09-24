@@ -189,7 +189,11 @@ const vis = {
                 default: firstMeasureField.name
             }
         };
-        this.trigger('updateConfig', newMeasureConfig);
+        // This is the core fix: trigger the update and check if the config has changed.
+        // If it has, the function will be called again with the updated config.
+        if (details.changed.config === false) {
+             this.trigger('updateConfig', newMeasureConfig);
+        }
 
         // Determine the measure for aggregation/chart data
         const selectedMeasureName = config.selected_measure_field || firstMeasureField.name;
